@@ -1,0 +1,62 @@
+@mixin circle($size, $color) {
+    width: $size;
+    height: $size;
+    background: $color;
+    border-radius: 100%;
+    display: block;
+}
+
+@mixin centerAbsoluteElement() {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+}
+
+@mixin centerTriangle($size, $color) {
+    width: 0;
+    height: 0;
+    border-bottom: $size solid transparent;
+    border-right: $size solid transparent;
+    border-left: $size solid #000;
+    border-top: $size solid #000;
+    @include centerAbsoluteElement();
+    transform: rotate(135deg) translate(5px, 5px);
+}
+
+@mixin pauseIcon($color) {
+    &:before {
+        content: "";
+        display: block;
+        width: 4px;
+        height: 14px;
+        background: $color;
+        position: absolute;
+        top: 9px;
+        left: 7px;
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        width: 4px;
+        height: 14px;
+        background: $color;
+        position: absolute;
+        top: 9px;
+        left: 13px;
+    }
+}
+
+@mixin playIcon($color) {
+    &:after {
+        display: block;
+        content: "";
+        @include centerTriangle(6px, $color);
+        position: relative;
+        top: 9px;
+        left: 4px;
+    }
+}

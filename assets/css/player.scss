@@ -1,0 +1,141 @@
+.player {
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 700px;
+    margin: auto;
+
+    .playerItemContainer {
+        width: 100%;
+        position: relative;
+
+        .playerControlBar {
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            position: absolute;
+            background: #ededed;
+            display: flex;
+
+            .playerControlBarPlay {
+                width: 25px;
+                height: 100%;
+            }
+
+            .playerControlBarStop {
+                width: 25px;
+                height: 100%;
+                position: relative;
+
+                &:after {
+                    content: "";
+                    width: 13px;
+                    height: 13px;
+                    background: #000;
+                    border-radius: 3px;
+                    @include centerAbsoluteElement();
+                }
+            }
+
+            .playerControlBarVolume {
+                width: 50px;
+                height: 100%;
+            }
+        }
+
+        .playerControlBtn {
+            @include circle(70px, #fff);
+            @include centerAbsoluteElement();
+
+            &.playerControlBtnPlay {
+                &:after {
+                    content: "";
+                    @include centerTriangle(10px, #000);
+                }
+            }
+        }
+
+        .playerControlBtnRepeat {
+            @include circle(70px, #fff);
+            @include centerAbsoluteElement();
+            display: block;
+
+            &:after {
+                content: "";
+                border-radius: 100%;
+                width: 30px;
+                height: 30px;
+                background: transparent;
+                border: 4px solid #000;
+                border-right-color: transparent;
+                border-bottom-color: transparent;
+                @include centerAbsoluteElement();
+            }
+
+            &.btnHidden {
+                display: none;
+            }
+        }
+
+        &[data-play-state="stopped"] {
+            .playerControlBtn {
+                display: block;
+            }
+
+            .playerControlBarPlay {
+                display: block;
+                @include playIcon(#000);
+            }
+
+            .playerControlBarStop {
+                display: none;
+            }
+        }
+
+        &[data-play-state="paused"] {
+            .playerControlBtn {
+                display: block;
+            }
+
+            .playerControlBarPlay {
+                @include playIcon(#000);
+            }
+
+            .playerControlBarStop {
+                display: block;
+            }
+        }
+
+        &[data-play-state="playing"] {
+            .playerControlBtn {
+                display: none;
+            }
+
+            .playerControlBarPlay {
+                display: block;
+                @include pauseIcon(#000);
+
+            }
+
+            .playerControlBarStop {
+                display: block;
+            }
+        }
+    }
+
+    .playerList {
+        margin-top: 30px;
+
+        .playerListItem {
+            cursor: pointer;
+
+            &.listItemsActive {
+                background: #ededed;
+            }
+        }
+    }
+
+    .playerControlBtnShuffle {
+        cursor: pointer;
+    }
+}

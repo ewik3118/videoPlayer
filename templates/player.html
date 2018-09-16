@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Player</title>
+    <link href="../assets/dist/css/style.css" rel="stylesheet">
+    <script src="../assets/dist/js/player.js"></script>
+</head>
+<body>
+<section class="player">
+    <h1>Player</h1>
+    <div id="player" class="playerItemContainer" data-play-state="stopped"
+         data-element-list-video-name=".playerListItem">
+        <video class="playerItem" width="100%" height="auto" poster="../assets/images/video_poster_1.PNG">
+            <source src="" type="">
+            <div class="playerControlBarFullScreen">full scr</div>
+        </video>
+        <div class="playerControlBtn playerControlBtnPlay">
+        </div>
+        <div class="playerControlBtnRepeat btnHidden">
+        </div>
+        <div class="playerControlBar">
+            <div class="playerControlBarPlay isPlaying"></div>
+            <div class="playerControlBarStop"></div>
+            <input type="range" class="playerControlBarVolume" name="volume" min="0" max="10"/>
+        </div>
+    </div>
+
+    <div class="playerList">
+        <p>Next video:</p>
+        <ul>
+        </ul>
+    </div>
+    <div class="playerControlBtnShuffle">shuffle wideo</div>
+
+</section>
+</body>
+</html>
