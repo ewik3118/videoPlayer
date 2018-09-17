@@ -118,12 +118,10 @@ var Player = /** @class */ (function () {
         var _this = this;
         this.listItems.forEach(function (el, i) {
             el.addEventListener('click', function () {
+                _this.hideRepeatBtn();
                 _this.reloadSrcVideo(i);
                 _this.play();
                 _this.actualPlayingIndex = i;
-                console.log('this.actualPlayingIndex', _this.actualPlayingIndex);
-                console.log("index", i);
-                console.log("element", el);
             }, false);
         });
     };
@@ -164,22 +162,14 @@ var Player = /** @class */ (function () {
     Player.prototype.changeVolume = function () {
         var value = this.volumeBtn.value;
         this.videoItem.volume = value * 0.1;
-        console.log(value);
-        console.log(this.videoItem.volume);
     };
     Player.prototype.setVideoSource = function (src) {
         this.sourceItem.src = src;
         this.sourceItem.setAttribute('type', 'video/' + this.setFormatTypeSrc(src));
     };
     Player.prototype.setFormatTypeSrc = function (src) {
-        var formatType = '';
-        if (this.getTypeVideoSrc(src) == 'ogv') {
-            formatType = 'ogg';
-        }
-        else {
-            formatType = this.getTypeVideoSrc(src);
-        }
-        return formatType;
+        var array = { 'ogv': 'ogg', 'mp4': 'mp4', 'webm': 'webm' };
+        return array[this.getTypeVideoSrc(src)];
     };
     Player.prototype.reloadSrcVideo = function (index) {
         this.setVideoSource(this.listItems[index].getAttribute('data-src'));

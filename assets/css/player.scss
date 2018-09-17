@@ -8,6 +8,11 @@
         width: 100%;
         position: relative;
 
+        .playerItem {
+            width: 100%;
+            height: auto;
+        }
+
         .playerControlBar {
             bottom: -20px;
             left: 0;

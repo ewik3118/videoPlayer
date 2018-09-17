@@ -131,12 +131,10 @@ class Player {
     public activeVideoHandler(): void {
         this.listItems.forEach((el, i) => {
             el.addEventListener('click', () => {
+                this.hideRepeatBtn();
                 this.reloadSrcVideo(i);
                 this.play();
                 this.actualPlayingIndex = i;
-                console.log('this.actualPlayingIndex', this.actualPlayingIndex);
-                console.log("index",i);
-                console.log("element", el);
             }, false);
         });
     }
@@ -147,7 +145,7 @@ class Player {
         }, false)
     }
 
-    public setDataPlayState(state): void {
+    public setDataPlayState(state: string): void {
         this.element.setAttribute('data-play-state', state);
     }
 
@@ -182,26 +180,18 @@ class Player {
     public changeVolume(): void {
         let value = this.volumeBtn.value;
         this.videoItem.volume = value * 0.1;
-        console.log(value);
-        console.log(this.videoItem.volume);
     }
 
-    public setVideoSource(src): void {
+    public setVideoSource(src: string): void {
         this.sourceItem.src = src;
 
         this.sourceItem.setAttribute('type', 'video/' + this.setFormatTypeSrc(src));
     }
 
-    public setFormatTypeSrc(src): string {
-        let formatType = '';
+    public setFormatTypeSrc(src: string): string {
+        let array = {'ogv': 'ogg', 'mp4': 'mp4', 'webm': 'webm'};
 
-        if (this.getTypeVideoSrc(src) == 'ogv') {
-            formatType = 'ogg';
-        } else {
-            formatType = this.getTypeVideoSrc(src);
-        }
-
-        return formatType;
+        return array[this.getTypeVideoSrc(src)];
     }
 
     public reloadSrcVideo(index: number): void {
@@ -277,7 +267,7 @@ class Player {
         }
     }
 
-    public getTypeVideoSrc(videoSrc): string {
+    public getTypeVideoSrc(videoSrc: string): string {
         return videoSrc.slice(videoSrc.lastIndexOf('.') + 1, videoSrc.length);
     }
 

@@ -18,7 +18,7 @@ funkcjonalności player:
 przykładowa struktura i użycie:
 
     <div id="player" data-play-state="stopped" data-element-list-video-name=".playerListItem">
-        <video class="playerItem" width="100%" height="auto" poster="../assets/images/video_poster_1.PNG">
+        <video class="playerItem" poster="../assets/images/video_poster_1.PNG">
             <source src="" type="">
             <div class="playerControlBarFullScreen"></div>
         </video>
